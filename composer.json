@@ -1,0 +1,36 @@
+{
+    "name": "als/sql",
+    "type": "library",
+    "description": "SQL Component.",
+    "keywords": ["als", "sql"],
+    "homepage": "https://github.com/parser3/als.sql",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Petrushin",
+            "email": "misha@design.ru",
+            "homepage": "http://misha.design.ru",
+            "role": "Developer"
+        },
+        {
+            "name": "Leonid Knyazev",
+            "email": "leonid@knyazev.me",
+            "homepage": "https://knyazev.me",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/parser3/als.sql/issues"
+    },
+    "require-dev": {
+        "parser/composer": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Als\\Sql\\": "src/"
+        }
+    },
+    "repositories": [
+        { "type": "composer", "url": "https://pkg.parser.ru" }
+    ]
+}
