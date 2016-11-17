@@ -24,12 +24,12 @@ $ composer require als/sql
 Для подключения соответствующего класса в методе `@auto[]` корневого auto.p добавляем например строку:
 
 ```ruby
-$self.oSql[^Als/Sql/MySql::create[$SQL.connect-string;
+$oSql[^Als/Sql/MySql::create[$SQL.connect-string;
 	$.sCacheDir[/../data/sql_cache]
 ]]
 ```
 
-Более подробный пример можно посмотреть в файл [auto.p](doc/examples/auto.p)
+Более подробный пример можно посмотреть в файл [auto.p](doc/example/auto.p)
 
 
 ## References

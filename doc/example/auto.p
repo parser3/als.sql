@@ -1,6 +1,6 @@
 ###############################################################################
 @USE
-/vendor/autoload.p
+vendor/autoload.p
 
 
 
@@ -8,7 +8,7 @@
 @auto[]
 #	Use Als/Sql/MySqlComp if you use in your code old name convention style
 #	(last_insert_id) instead of new ones (lastInsertId).
-$self.oSql[^Als/Sql/MySql::create[$SQL.connect-string;
+$oSql[^Als/Sql/MySql::create[$SQL.connect-string;
 	$.bDebug(1)
 	$.sCacheDir[/../data/sql_cache]
 	$.dCacheInterval(1/24)
@@ -18,7 +18,7 @@ $self.oSql[^Als/Sql/MySql::create[$SQL.connect-string;
 
 ###############################################################################
 @postprocess[sBody]
-^self.getSQLStat[$self.oSql]
+^self.getSQLStat[$oSql]
 #end @postprocess[]
 
 
