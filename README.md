@@ -2,7 +2,6 @@
 
 Классы для работы с MySQL, Oracle, MSSQL и PgSQL.
 
----
 
 ## Info
 
@@ -12,15 +11,15 @@
 
 Т.к. вносить изменения в код парсера для решения подобных задач мне показалось не правильным, то я написал SQL классы, которые обеспечивают требуемый мне функционал.
 
----
 
-## Install
+## Installation
 
-`php composer.phar require als/sql`
+```bash
+$ composer require als/sql
+```
 
----
 
-## Usage
+## Basic Usage
 
 Для подключения соответствующего класса в методе `@auto[]` корневого auto.p добавляем например строку:
 
@@ -29,10 +28,10 @@ $self.oSql[^Als/Sql/MySql::create[$SQL.connect-string;
 	$.sCacheDir[/../data/sql_cache]
 ]]
 ```
+
 Более подробный пример можно посмотреть в файл [auto.p](doc/examples/auto.p)
 
----
 
 ## References
 
-- Bug reports and Feature requests to Issues.
+- Bugs and feature request are tracked on [GitHub](https://github.com/parser3/als.sql/issues)
