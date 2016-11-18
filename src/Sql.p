@@ -47,7 +47,7 @@ $self.iConnectEstablished(0)
 $self.bServerEnvSet(false)
 $self.dtNow[^date::now[]]
 
-$self.oSqlInfo[^Als/Sql/SqlInfo::create[]]
+$self.oSqlInfo[^Als/Sql/Info::create[]]
 
 # backward
 $self.server[$self.connect]

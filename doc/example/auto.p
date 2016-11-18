@@ -25,7 +25,7 @@ $oSql[^Als/Sql/MySql::create[$SQL.connect-string;
 ###############################################################################
 @getSQLStat[oSql][locals]
 ^if(def $oSql){
-	$oSqlLog[^Als/Sql/SqlLog::create[$oSql]]
+	$oSqlLog[^Als/Sql/Log::create[$oSql]]
 
 	^oSqlLog.log[
 		$.iQueryTimeLimit(500)
