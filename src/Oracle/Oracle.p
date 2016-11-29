@@ -5,6 +5,9 @@
 @CLASS
 Als/Sql/Oracle
 
+@OPTIONS
+partial
+
 @USE
 Sql.p
 

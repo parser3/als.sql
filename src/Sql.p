@@ -6,16 +6,8 @@
 @CLASS
 Als/Sql
 
-
-###########################################################################
-@auto[]
-$tOptionsReplace[^table::create{sFrom	sTo
-file	sFile
-auto	bAuto
-is_force	bForce
-cache_interval	dInterval
-cache_expiration_time	dtExpirationTime}]
-
+@OPTIONS
+partial
 
 
 ###########################################################################
@@ -175,6 +167,17 @@ $result[]
 # must return text with query details (explain for mysql)
 @getQueryDetail[sType;sQuery;hSqlOption][result]
 $result[]
+
+
+
+###########################################################################
+@extend[][result]
+^try{
+	^use[SqlAdv.p]
+	^use[${self.sServerName}/${self.sServerName}Adv.p]
+}{
+	$exception.handled(true)
+}
 
 
 
@@ -425,4 +428,3 @@ $result[]
 		^throw[$self.CLASS_NAME;Unknown type '$sType']
 	}
 }
-

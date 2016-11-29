@@ -5,6 +5,9 @@
 @CLASS
 Als/Sql/MySql
 
+@OPTIONS
+partial
+
 @USE
 Sql.p
 

@@ -5,6 +5,9 @@
 @CLASS
 Als/Sql/MsSql
 
+@OPTIONS
+partial
+
 @USE
 Sql.p
 

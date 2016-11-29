@@ -1,9 +1,11 @@
 ############################################################
-# $Id: PgSql.p,v 2.8 2012-10-01 00:53:28 misha Exp $
-# based on egr's pgsql.p
+# $Id: SQLite.p,v 1.3 2012-10-01 00:53:28 misha Exp $
 
 @CLASS
-Als/Sql/PgSql
+Als/Sql/SQLite
+
+@OPTIONS
+partial
 
 @USE
 Sql.p
@@ -14,82 +16,78 @@ Als/Sql
 
 
 @auto[]
-$sServerName[PgSql]
-$sQuoteChar["]
+$sServerName[SQLite]
+# todo@
+$sQuoteChar[`]
 
-$server_name[pgsql]
+$server_name[sqlite]
 
 
 
 # DATE functions
 
-# current date
 @today[]
-$result[CURRENT_DATE]
+$result[DATE('now')]
 
 
 
-# current date and time
 @now[]
-$result[CURRENT_TIMESTAMP]
+$result[DATETIME('now')]
 
 
 
 @year[sSource]
-$result[EXTRACT(year FROM $sSource)]
+$result[STRFTIME('%Y', $sSource)]
 
 
 
 @month[sSource]
-$result[EXTRACT(month FROM $sSource)]
+$result[STRFTIME('%m', $sSource)]
 
 
 
 @day[sSource]
-$result[EXTRACT(day FROM $sSource)]
+$result[STRFTIME('%d', $sSource)]
 
 
 
 @ymd[sSource]
-$result[TO_CHAR($sSource,'YY-MM-DD')]
+$result[STRFTIME('%Y-%m-%d', $sSource)]
 
 
 
 @time[sSource]
-$result[TO_CHAR($sSource,'HH24:MI:SS')]
+$result[TIME($sSource)]
 
 
 
-# days between specified dates
 @dateDiff[t;sDateFrom;sDateTo]
-$result[^if(def $sDateTo){TO_DAYS($sDateTo)}{^self.today[]} - TO_DAYS($sDateFrom)]
+$result[^if(def $sDateTo){JULIANDAY($sDateTo)}{^self.now[]} - JULIANDAY($sDateFrom)]
 
 
 
 @dateSub[sDate;iDays]
-$result[^if(def $sDate){'$sDate'}{^self.now[]} - INTERVAL '$iDays DAYS']
+$result[DATE(^if(def $sDate){$sDate}{^self.today[]}, '+$iDays DAY')]
 
 
 
 @dateAdd[sDate;iDays]
-$result[^if(def $sDate){'$sDate'}{^self.now[]} + INTERVAL '$iDays DAYS']
+$result[DATE(^if(def $sDate){$sDate}{^self.today[]}, '-$iDays DAY')]
 
 
 
 # functions available not for all sql servers
+
 # MSSQL does not have anything like this
 @dateFormat[sSource;sFormatString]
-$result[TO_CHAR($sSource, '^if(def $sFormatString){$sFormatString}{YY-MM-DD}')]
-
+$result[STRFTIME('^if(def $sFormatString){$sFormatString}{%Y-%m-%d}', $sSource)]
 
 
 
 # LAST_INSERT_ID()
-
-# you must add column with SERIAL type and sequence created by default
 @lastInsertID[sTable]
 ^self._execute{
-	$result(^int:sql{SELECT CURRVAL('${sTable}_${sTable}_id_seq')}[$.default{0}])
+	$result(^int:sql{SELECT last_insert_rowid()}[$.default{0}])
 }
 
 
@@ -112,7 +110,7 @@ $result[LOWER($sField)]
 
 
 @concat[*hArgs][s]
-$result[CONCAT(^hArgs.foreach[;s]{$s}[, ])]
+$result[^hArgs.foreach[;s]{IFNULL($s, '')}[ || ]]
 
 
 
