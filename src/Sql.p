@@ -10,6 +10,17 @@ Als/Sql
 partial
 
 
+
+###########################################################################
+@auto[]
+$tOptionsReplace[^table::create{sFrom	sTo
+file	sFile
+auto	bAuto
+is_force	bForce
+cache_interval	dInterval
+cache_expiration_time	dtExpirationTime}]
+
+
 ###########################################################################
 # $.bDebug(true) - collect queries statistics (time/memory usage) [default=false]
 # $.sCacheDir[directory for storing cache files]
