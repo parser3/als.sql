@@ -1,5 +1,5 @@
 ﻿@CLASS
-Sql
+Als/Sql
 
 @OPTIONS
 partial
